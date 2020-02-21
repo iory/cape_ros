@@ -1,0 +1,23 @@
+<launch>
+
+  <arg name="gui" default="true"/>
+  <arg name="camera" default="tablet/head_rgbd_sensor"
+       doc="namespace of republished topics" />
+  <arg name="input_image" default="$(arg camera)/rgb/image_rect_color" />
+  <arg name="input_depth_image" default="$(arg camera)/depth_registered/hw_registered/image_rect_raw" />
+  <arg name="input_camera_info" default="$(arg camera)/rgb/camera_info" />
+
+  <node name="plane_detection"
+        pkg="nodelet" type="nodelet"
+        args="standalone cape_ros/cape"
+        output="screen" >
+    <remap from="~input" to="$(arg input_image)" />
+    <remap from="~input/depth" to="$(arg input_depth_image)" />
+    <remap from="~input/info" to="$(arg input_camera_info)" />
+    <rosparam>
+      queue_size: 5
+      approximate_sync: true
+    </rosparam>
+  </node>
+
+</launch>

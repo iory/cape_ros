@@ -1,0 +1,8 @@
+<library path="lib/libcape_ros">
+
+  <class name="cape_ros/cape"
+         type="cape_ros::CAPENodelet" base_class_type="nodelet::Nodelet">
+    <description>Nodelet to segment plane and cylinder</description>
+  </class>
+
+</library>
